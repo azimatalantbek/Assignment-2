@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substring Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #43a047; }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #43a047;
+        }
+        button {
+            background: #43a047;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #388e3c;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #43a047;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Substring Checker</h1>
+        <input type="text" id="stringInput1" placeholder="Enter main string" required>
+        <input type="text" id="stringInput2" placeholder="Enter substring" required>
+        <button id="checkButton">Check Substring</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function isSubstring(mainStr, subStr) {
+            return mainStr.includes(subStr);
+        }
+
+        document.getElementById('checkButton').addEventListener('click', function() {
+            const mainStr = document.getElementById('stringInput1').value;
+            const subStr = document.getElementById('stringInput2').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isSubstring(mainStr, subStr)) {
+                resultDiv.textContent = `"${subStr}" is a substring of "${mainStr}"! 🎉`;
+            } else {
+                resultDiv.textContent = `"${subStr}" is not a substring of "${mainStr}". ❌`;
+            }
+        });
+    </script>
+
+</body>
+</html>

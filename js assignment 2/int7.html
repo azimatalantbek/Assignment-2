@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatten Nested Arrays</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e1f5fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #0288d1; }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #0288d1;
+            resize: none;
+        }
+        button {
+            background: #0288d1;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0277bd;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #0288d1;
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flatten Nested Arrays</h1>
+        <textarea id="arrayInput" placeholder="Enter a nested array (e.g., [[1, 2], [3, [4, 5]]])" required></textarea>
+        <button id="flattenButton">Flatten Array</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function flattenArray(nestedArray) {
+            return nestedArray.reduce((acc, val) => 
+                Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []);
+        }
+
+        document.getElementById('flattenButton').addEventListener('click', function() {
+            const input = document.getElementById('arrayInput').value;
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const nestedArray = JSON.parse(input);
+                const flattenedArray = flattenArray(nestedArray);
+                resultDiv.textContent = `Flattened Array: \n[${flattenedArray.join(', ')}]`;
+            } catch (error) {
+                resultDiv.textContent = "Invalid input. Please enter a valid nested array.";
+            }
+        });
+    </script>
+</body>
+</html>

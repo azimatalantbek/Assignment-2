@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle Function Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #2196f3; }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #2196f3;
+        }
+        button {
+            background: #2196f3;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #2196f3;
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Throttle Function</h1>
+        <input type="number" id="callCount" placeholder="Enter number of calls" required>
+        <button id="throttleButton">Throttle Function Calls</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function throttle(func, limit) {
+            let lastFunc;
+            let lastRan;
+
+            return function() {
+                const context = this;
+                const args = arguments;
+
+                if (!lastRan) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                } else {
+                    clearTimeout(lastFunc);
+                    lastFunc = setTimeout(function() {
+                        if ((Date.now() - lastRan) >= limit) {
+                            func.apply(context, args);
+                            lastRan = Date.now();
+                        }
+                    }, limit - (Date.now() - lastRan));
+                }
+            };
+        }
+
+
+        function exampleFunction() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent += 'Function executed! \n';
+        }
+
+        const throttledFunction = throttle(exampleFunction, 2000); 
+
+        document.getElementById('throttleButton').addEventListener('click', function() {
+            const callCount = parseInt(document.getElementById('callCount').value);
+
+            for (let i = 0; i < callCount; i++) {
+                throttledFunction();
+            }
+        });
+    </script>
+
+</body>
+</html>

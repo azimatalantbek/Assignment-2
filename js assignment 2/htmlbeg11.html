@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Array Elements</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #e3f2fd; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #1976d2; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #1976d2; }
+        button { background: #1976d2; color: #fff; cursor: pointer; }
+        button:hover { background: #1565c0; }
+        #result { margin-top: 20px; font-size: 1.2em; color: #1976d2; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sum of Array Elements</h1>
+        <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" required>
+        <button id="sumButton">Calculate Sum</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function sumArrayElements(arr) {
+            return arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        }
+
+        document.getElementById('sumButton').addEventListener('click', function() {
+            const inputString = document.getElementById('arrayInput').value;
+            const array = inputString.split(',').map(num => parseFloat(num.trim()));
+            const sum = sumArrayElements(array);
+            document.getElementById('result').textContent = `Sum: ${sum}`;
+        });
+    </script>
+
+</body>
+</html>

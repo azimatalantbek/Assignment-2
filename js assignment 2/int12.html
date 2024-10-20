@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Intersection Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #43a047; }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #43a047;
+        }
+        button {
+            background: #43a047;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #388e3c;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #43a047;
+            white-space: pre-wrap; /* Preserve whitespace */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Find Intersection</h1>
+        <input type="text" id="arrayInput1" placeholder="Enter first array (comma-separated)" required>
+        <input type="text" id="arrayInput2" placeholder="Enter second array (comma-separated)" required>
+        <button id="findButton">Find Intersection</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function findIntersection(arr1, arr2) {
+            return arr1.filter(value => arr2.includes(value));
+        }
+
+        document.getElementById('findButton').addEventListener('click', function() {
+            const array1 = document.getElementById('arrayInput1').value.split(',').map(item => item.trim());
+            const array2 = document.getElementById('arrayInput2').value.split(',').map(item => item.trim());
+            const resultDiv = document.getElementById('result');
+
+            const intersection = findIntersection(array1, array2);
+
+            if (intersection.length > 0) {
+                resultDiv.textContent = `Common Elements:\n[${intersection.join(', ')}]`;
+            } else {
+                resultDiv.textContent = "No common elements found.";
+            }
+        });
+    </script>
+
+</body>
+</html>

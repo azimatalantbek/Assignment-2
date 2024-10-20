@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #e1f5fe; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #2196f3; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #2196f3; }
+        button { background: #2196f3; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #1976d2; }
+        #result { margin-top: 20px; font-size: 1.2em; color: #2196f3; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <input type="number" id="min" placeholder="Enter minimum value" required>
+        <input type="number" id="max" placeholder="Enter maximum value" required>
+        <button id="generateButton">Generate Random Number</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function generateRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        document.getElementById('generateButton').addEventListener('click', function() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            const randomNum = generateRandomNumber(min, max);
+            document.getElementById('result').textContent = `Random Number: ${randomNum}`;
+        });
+    </script>
+
+</body>
+</html>

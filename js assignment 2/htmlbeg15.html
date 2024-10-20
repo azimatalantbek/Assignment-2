@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Date and Time</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #fff3e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #ff9800; }
+        #dateTime { margin-top: 20px; font-size: 1.4em; color: #ff5722; }
+        button { background: #ff9800; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; }
+        button:hover { background: #f57c00; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Current Date and Time</h1>
+        <div id="dateTime"></div>
+        <button onclick="displayDateTime()">Refresh</button>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function displayDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            document.getElementById('dateTime').textContent = `Current Date and Time: ${formattedDate}`;
+        }
+        window.onload = displayDateTime;
+    </script>
+</body>
+</html>

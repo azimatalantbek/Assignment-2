@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Values Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #d81b60; }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #d81b60;
+            resize: none;
+        }
+        button {
+            background: #d81b60;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #c2185b;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #d81b60;
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Unique Values Finder</h1>
+        <textarea id="arrayInput" placeholder="Enter an array (e.g., [1, 2, 2, 3, 4, 4])" required></textarea>
+        <button id="uniqueButton">Get Unique Values</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function getUniqueValues(array) {
+            return [...new Set(array)];
+        }
+
+        document.getElementById('uniqueButton').addEventListener('click', function() {
+            const input = document.getElementById('arrayInput').value;
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const array = JSON.parse(input);
+                const uniqueValues = getUniqueValues(array);
+                resultDiv.textContent = `Unique Values: \n[${uniqueValues.join(', ')}]`;
+            } catch (error) {
+                resultDiv.textContent = "Invalid input. Please enter a valid array.";
+            }
+        });
+    </script>
+
+</body>
+</html>

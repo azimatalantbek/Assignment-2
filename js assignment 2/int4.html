@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Occurrences Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #1976d2; }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #1976d2;
+            resize: none;
+        }
+        button {
+            background: #1976d2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #1976d2;
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Word Occurrences Counter</h1>
+        <textarea id="textInput" placeholder="Enter your text here..." required></textarea>
+        <button id="countButton">Count Words</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function countWordOccurrences(text) {
+            const words = text.toLowerCase().match(/\b\w+\b/g) || []; 
+            const wordCount = {};
+
+            words.forEach(word => {
+                wordCount[word] = (wordCount[word] || 0) + 1;
+            });
+
+            return wordCount;
+        }
+
+        document.getElementById('countButton').addEventListener('click', function() {
+            const text = document.getElementById('textInput').value;
+            const wordCounts = countWordOccurrences(text);
+            const resultDiv = document.getElementById('result');
+
+            resultDiv.innerHTML = Object.entries(wordCounts)
+                .map(([word, count]) => `${word}: ${count}`)
+                .join('<br/>') || "No words found.";
+        });
+    </script>
+
+</body>
+</html>

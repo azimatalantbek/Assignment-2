@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8d7e8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #e91e63; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #e91e63; }
+        button { background: #e91e63; color: #fff; cursor: pointer; }
+        button:hover { background: #c2185b; }
+        #result { margin-top: 20px; font-size: 1.2em; }
+        #result.true { color: #43a047; }
+        #result.false { color: #e53935; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+        <form id="palindromeForm">
+            <input type="text" id="inputString" placeholder="Enter a word" required>
+            <button type="submit">Check</button>
+        </form>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function isPalindrome(str) {
+            const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return cleanedStr === cleanedStr.split('').reverse().join('');
+        }
+
+        document.getElementById('palindromeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inputString = document.getElementById('inputString').value;
+            const resultDiv = document.getElementById('result');
+            const isPalin = isPalindrome(inputString);
+            resultDiv.textContent = `"${inputString}" is ${isPalin ? 'a palindrome! 💖' : 'not a palindrome. ❌'}`;
+            resultDiv.className = isPalin ? 'true' : 'false';
+        });
+    </script>
+</body>
+</html>

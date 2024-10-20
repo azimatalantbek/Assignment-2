@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Two Numbers</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #e0f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #d88af7; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00796b; }
+        button { background: #d88af7; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #d88af7; }
+        #result { margin-top: 20px; font-size: 1.2em; color: #00796b; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sum of Two Numbers</h1>
+        <input type="number" id="number1" placeholder="Enter the first number" required>
+        <input type="number" id="number2" placeholder="Enter the second number" required>
+        <button id="sumButton">Calculate Sum</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function calculateSum(num1, num2) {
+            return num1 + num2;
+        }
+
+        document.getElementById('sumButton').addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('number1').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').textContent = "Please enter valid numbers.";
+            } else {
+                const sum = calculateSum(num1, num2);
+                document.getElementById('result').textContent = `Sum: ${sum}`;
+            }
+        });
+    </script>
+
+</body>
+</html>

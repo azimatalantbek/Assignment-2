@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort an Array of Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 { color: #388e3c; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #388e3c;
+        }
+        button {
+            background: #388e3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2e7d32;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sort an Array</h1>
+        <input type="text" id="numbersInput" placeholder="Enter numbers separated by commas" required>
+        <button id="sortButton">Sort Numbers</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function bubbleSort(arr) {
+            const n = arr.length;
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            return arr;
+        }
+
+        document.getElementById('sortButton').addEventListener('click', function() {
+            const input = document.getElementById('numbersInput').value;
+            const numberArray = input.split(',').map(Number);
+
+            if (numberArray.some(isNaN)) {
+                document.getElementById('result').textContent = "Please enter valid numbers separated by commas.";
+            } else {
+                const sortedArray = bubbleSort(numberArray);
+                document.getElementById('result').textContent = `Sorted Array: ${sortedArray.join(', ')}`;
+            }
+        });
+    </script>
+
+</body>
+</html>

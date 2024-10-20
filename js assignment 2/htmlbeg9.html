@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #fce4ec; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 350px; }
+        h1 { color: #e91e63; }
+        button { background: #e91e63; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #c2185b; }
+        #result { margin-top: 20px; font-size: 1.2em; color: #4a4a4a; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>FizzBuzz</h1>
+        <button id="fizzBuzzButton">Print FizzBuzz</button>
+        <pre id="result"></pre>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        document.getElementById('fizzBuzzButton').addEventListener('click', function() {
+            let resultText = '';
+            for (let i = 1; i <= 100; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    resultText += 'FizzBuzz\n';
+                } else if (i % 3 === 0) {
+                    resultText += 'Fizz\n';
+                } else if (i % 5 === 0) {
+                    resultText += 'Buzz\n';
+                } else {
+                    resultText += `${i}\n`;
+                }
+            }
+            document.getElementById('result').textContent = resultText;
+        });
+    </script>
+</body>
+</html>

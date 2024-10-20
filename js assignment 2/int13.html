@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Clone an Object</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #d81b60; }
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #d81b60;
+            resize: none;
+        }
+        button {
+            background: #d81b60;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #c2185b;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #d81b60;
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Deep Clone an Object</h1>
+        <textarea id="objectInput" placeholder='Enter a JavaScript object as JSON (e.g., {"key": "value", "nested": {"key2": "value2"}})' required></textarea>
+        <button id="cloneButton">Clone Object</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function deepClone(obj) {
+            return JSON.parse(JSON.stringify(obj));
+        }
+
+        document.getElementById('cloneButton').addEventListener('click', function() {
+            const objectInput = document.getElementById('objectInput').value;
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const parsedObject = JSON.parse(objectInput);
+                const clonedObject = deepClone(parsedObject);
+                resultDiv.textContent = `Cloned Object:\n${JSON.stringify(clonedObject, null, 2)}`;
+            } catch (error) {
+                resultDiv.textContent = "Invalid JSON. Please enter a valid JavaScript object.";
+            }
+        });
+    </script>
+
+</body>
+</html>

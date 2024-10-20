@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Numbers Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 { color: #388e3c; }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #388e3c;
+        }
+        button {
+            background: #388e3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2e7d32;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #388e3c;
+            white-space: pre-wrap; /* Preserve whitespace */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Prime Numbers Finder</h1>
+        <input type="number" id="limitInput" placeholder="Enter limit" required>
+        <button id="findButton">Find Primes</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false; // 0 and 1 are not prime numbers
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false; // Found a divisor
+            }
+            return true; // It's a prime number
+        }
+
+        function findPrimes(limit) {
+            const primes = [];
+            for (let i = 2; i <= limit; i++) {
+                if (isPrime(i)) {
+                    primes.push(i);
+                }
+            }
+            return primes;
+        }
+
+        document.getElementById('findButton').addEventListener('click', function() {
+            const limit = parseInt(document.getElementById('limitInput').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(limit) || limit < 2) {
+                resultDiv.textContent = "Please enter a valid limit greater than 1.";
+                return;
+            }
+
+            const primes = findPrimes(limit);
+            resultDiv.textContent = `Prime numbers up to ${limit}: \n${primes.join(', ') || "None found."}`;
+        });
+    </script>
+
+</body>
+</html>

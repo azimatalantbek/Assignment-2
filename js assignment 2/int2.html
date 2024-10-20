@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 { color: #c2185b; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #c2185b;
+        }
+        button {
+            background: #c2185b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ad1457;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #c2185b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Email Validator</h1>
+        <input type="text" id="emailInput" placeholder="Enter your email" required>
+        <button id="validateButton">Validate Email</button>
+        <div id="result"></div>
+        <a href="index.html">Home page</a>
+    </div>
+
+    <script>
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        document.getElementById('validateButton').addEventListener('click', function() {
+            const email = document.getElementById('emailInput').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isValidEmail(email)) {
+                resultDiv.textContent = `"${email}" is a valid email address! 🎉`;
+                resultDiv.style.color = "#388e3c"; // Green for valid
+            } else {
+                resultDiv.textContent = `"${email}" is not a valid email address. ❌`;
+                resultDiv.style.color = "#d32f2f"; // Red for invalid
+            }
+        });
+    </script>
+
+</body>
+</html>
